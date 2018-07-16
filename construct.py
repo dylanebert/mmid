@@ -7,11 +7,14 @@ def save_images(word, links):
     if not os.path.exists(path):
         os.makedirs(path)
     for i, link in enumerate(links):
-        try:
-            urlretrieve(link, os.path.join(path, str(i + 1) + '.jpg'))
-            print('Retrieved {0}'.format(link))
-        except:
-            print('Failed to retrieve {0}'.format(link))
+        filename = os.path.join(path, str(i + 1) + '.jpg')
+        if not os.path.exists(filename):
+            print('Retrieving word {0}: {1} of {2}'.format(word, i + 1, len(links)))
+            try:
+                urlretrieve(link, filename)
+            except:
+                pass
+    print('Finished retrieving word {0}'.format(word))
 
 words = open('overlap.txt', 'r', encoding='utf-8').read().splitlines()
 links = []
