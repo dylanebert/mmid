@@ -3,7 +3,7 @@ from urllib.request import urlretrieve
 import os
 
 def save_images(word, links):
-    path = os.path.join('data', word)
+    path = os.path.join('/data/people/debert/mmid/data', word)
     if not os.path.exists(path):
         os.makedirs(path)
     for i, link in enumerate(links):
@@ -15,7 +15,7 @@ def save_images(word, links):
 
 words = open('overlap.txt', 'r', encoding='utf-8').read().splitlines()
 links = []
-with open('mmid_english_urls.jsonl', encoding='utf-8') as f:
+with open('/data/people/debert/mmid_english_urls.jsonl', encoding='utf-8') as f:
     lines = f.readlines()
     for line in lines:
         obj = json.loads(line)
