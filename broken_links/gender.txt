@@ -1,7 +1,2 @@
-http://reports.weforum.org/global-gender-gap-report-2015/files/2015/11/2_average-annual-earnings-gender-equality-gap-women.png
-http://m.snopes.com/wp-content/uploads/2015/07/oregon-teen-sex-change.jpg
-http://web.peanutlabs.com/wp-content/uploads/2016/04/women-149577_960_720.png
-http://www.iccs.org.uk/wp-content/uploads/2012/11/gender.jpg
-http://www.alternet.org/files/story_images/gender.png
-http://thesheaf.com/wp-content/uploads/2013/10/BabyGender.png
-http://thebodyisnotanapology.com/wp-content/uploads/2015/01/GenderDiscriminationage.jpg
+https://www.wmo.int/gender/sites/default/files/gender equality.png
+http://www.aiga.org/uploadedImages/AIGA/Content/Tools_and_Resources/Womens_Leadership/gender-bias-design-aiga-640.png
