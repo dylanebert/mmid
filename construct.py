@@ -3,8 +3,8 @@ from urllib.request import urlretrieve
 import os
 
 local_path = '/home/debert/mmid'
-mmid_english_urls_path = os.path.join(local_path, 'mmid_english_urls.jsonl')
 data_path = '/data/people/debert/mmid/data'
+mmid_english_urls_path = '/data/people/debert/mmid/mmid_english_urls.jsonl'
 
 def save_images(word, links):
     path = os.path.join(data_path, word)
