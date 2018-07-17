@@ -28,13 +28,13 @@ def save_images(word, links):
     print('Finished retrieving word {0}\t\t\t'.format(word))
 
 words = open(os.path.join(local_path, 'test_word_list.txt'), 'r', encoding='utf-8').read().splitlines()
-idx = 1 
+idx = 1
 with open(mmid_english_urls_path, encoding='utf-8') as f:
     lines = f.readlines()
     for line in lines:
         obj = json.loads(line)
         word = obj['word_string']
         if word in words:
-	    print('{0} of {1}'.format(idx, len(words)))
-	    idx += 1
+            print('{0} of {1}'.format(idx, len(words)))
+            idx += 1
             save_images(word, obj['images'].values())
