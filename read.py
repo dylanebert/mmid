@@ -1,16 +1,15 @@
-import json
+import csv
+import numpy as np
 
-words = []
-with open('mmid_english_urls.jsonl', encoding='utf-8') as f:
-    lines = f.readlines()
-    length = len(lines)
-    for i, line in enumerate(lines):
-        if i % 100 == 0:
-            print('Reading word {0} of {1}'.format(i, length), end='\r')
-        obj = json.loads(line)
-        words.append(obj['word_string'])
-    print('Finished reading words')
+dict_reader = csv.DictReader(open('concreteness.txt', 'r', encoding='utf-8'), delimiter='\t')
+concreteness_dict = {}
+for row in dict_reader:
+    concreteness_dict[row['Word']] = float(row['Conc.M'])
 
-with open('mmid_words_list.txt', 'w', encoding='utf-8') as f:
-    for word in words:
-        f.write('{0}\n'.format(word))
+wordsim_words = open('wordsim_words_list.txt', 'r', encoding='utf-8').read().splitlines()
+
+with open('mmid_words_list.txt', 'r', encoding='utf-8') as f:
+    words = [word for word in f.read().splitlines() if word in concreteness_dict and word not in wordsim_words]
+    words_sorted = sorted(words, key=lambda word: concreteness_dict[word])
+    open('concrete_words_list.txt', 'w', encoding='utf-8').write('\n'.join(words_sorted[-1000:]))
+    open('abstract_words.list.txt', 'w', encoding='utf-8').write('\n'.join(words_sorted[:1000]))
