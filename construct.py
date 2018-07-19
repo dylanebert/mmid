@@ -18,9 +18,9 @@ def save_images(word, links):
     for i, link in enumerate(links):
         filename = os.path.join(path, str(i + 1) + '.jpg')
         if not os.path.exists(filename) and link not in broken_links:
-            print('{0} Retrieving word {1}: {2} of {3}'.format(datetime.datetime.now(), word, i + 1, len(links)), end='\r')
+            print('{0} Retrieving word {1}: {2} of {3}'.format(datetime.datetime.now(), word, i + 1, len(links)))
             try:
-                response = urllib.request.urlopen(link, timeout=10)
+                response = urllib.request.urlopen(link, timeout=5)
                 with open(filename, 'w') as f:
                     f.write(response.read())
             except:
