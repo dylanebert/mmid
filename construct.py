@@ -1,10 +1,11 @@
 import json
 from urllib.request import urlretrieve
 import os
+import urllib.request
 
-local_path = '/home/debert/mmid'
-data_path = '/data/people/debert/mmid/data'
-mmid_english_urls_path = '/data/people/debert/mmid/mmid_english_urls.jsonl'
+local_path = '' #'/home/debert/mmid'
+data_path = 'data' #'/data/people/debert/mmid/data'
+mmid_english_urls_path = 'mmid_english_urls.jsonl' #'/data/people/debert/mmid/mmid_english_urls.jsonl'
 
 def save_images(word, links):
     path = os.path.join(data_path, word)
@@ -19,7 +20,9 @@ def save_images(word, links):
         if not os.path.exists(filename) and link not in broken_links:
             print('Retrieving word {0}: {1} of {2}'.format(word, i + 1, len(links)), end='\r')
             try:
-                urlretrieve(link, filename)
+                response = urllib.request.urlopen(link, timeout=10)
+                with open(filename, 'w') as f:
+                    f.write(response.read())
             except:
                 broken_links.append(link)
 
