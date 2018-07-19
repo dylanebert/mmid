@@ -1,6 +1,7 @@
 import json
 import os
 import urllib.request
+import datetime
 
 local_path = '/home/debert/mmid'
 data_path = '/data/people/debert/mmid/data'
@@ -17,7 +18,7 @@ def save_images(word, links):
     for i, link in enumerate(links):
         filename = os.path.join(path, str(i + 1) + '.jpg')
         if not os.path.exists(filename) and link not in broken_links:
-            print('Retrieving word {0}: {1} of {2}'.format(word, i + 1, len(links)), end='\r')
+            print('{0} Retrieving word {1}: {2} of {3}'.format(datetime.datetime.now(), word, i + 1, len(links)), end='\r')
             try:
                 response = urllib.request.urlopen(link, timeout=10)
                 with open(filename, 'w') as f:
