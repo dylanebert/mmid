@@ -12,7 +12,7 @@ def save_images(word, links):
     if not os.path.exists(path):
         os.makedirs(path)
 
-    broken_links_file = open(os.path.join(local_path, 'broken_links', word + '.txt'), 'w+', encoding='utf-8')
+    broken_links_file = open(os.path.join(local_path, 'broken_links', word + '.txt'), 'r+', encoding='utf-8')
     broken_links = broken_links_file.read().splitlines()
 
     for i, link in enumerate(links):
@@ -20,8 +20,8 @@ def save_images(word, links):
         if not os.path.exists(filename) and link not in broken_links:
             print('{0} Retrieving word {1}: {2} of {3}'.format(datetime.datetime.now(), word, i + 1, len(links)))
             try:
-                response = urllib.request.urlopen(link, timeout=5)
-                with open(filename, 'w') as f:
+                response = urllib.request.urlopen(link, timeout=.5)
+                with open(filename, 'wb') as f:
                     f.write(response.read())
             except:
                 broken_links.append(link)
