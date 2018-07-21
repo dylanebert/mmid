@@ -11,3 +11,10 @@ with open('concreteness.txt') as f:
         word = row['Word']
         if word in wordsim_words:
             wordsim_words[word]['Concreteness'] = row['Conc.M']
+
+with open('wordsim_concreteness.txt', 'w') as f:
+    for word in wordsim_words.keys():
+        try:
+            f.write('{0}, {1}\n'.format(word, wordsim_words[word]['Concreteness']))
+        except:
+            pass
