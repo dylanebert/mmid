@@ -6,9 +6,9 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data_path', help='data path in which to save mmid data', type=str, default='/data/people/debert/mmid/data')
-parser.add_argument('--broken_links_dir', help='directory in which to store broken links records', type=str, default='/data/people/debert/mmid/broken_links')
+parser.add_argument('--broken_links_dir', help='directory in which to store broken links records', type=str, default='/home/debert/mmid/broken_links')
 parser.add_argument('--urls_path', help='json file storing image urls', type=str, default='/data/people/debert/mmid/mmid_english_urls.jsonl')
-parser.add_argument('--word_list_path', help='path to list of words to retrieve', type=str, default='/data/people/debert/mmid/test_word_list.txt')
+parser.add_argument('--word_list_path', help='path to list of words to retrieve', type=str, default='/home/debert/mmid/test_word_list.txt')
 args = parser.parse_args()
 
 data_path = args.data_path
