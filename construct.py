@@ -21,8 +21,6 @@ def save_images(word, links):
     broken_links_path = os.path.join(broken_links_dir, word + '.txt')
     if not os.path.exists(path):
         os.makedirs(path)
-    if not os.path.exists(broken_links_path):
-        os.makedirs(broken_links_path)
 
     broken_links_file = open(broken_links_path, 'r+', encoding='utf-8')
     broken_links = broken_links_file.read().splitlines()
