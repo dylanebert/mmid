@@ -1,6 +1,8 @@
 import csv
 import numpy as np
 import scipy.stats
+from matplotlib import pyplot as plt
+from numpy.polynomial.polynomial import polyfit
 
 concreteness = {}
 with open('wordsim_concreteness.txt') as f:
@@ -18,11 +20,22 @@ with open('combined.csv') as f:
             row['Human (mean)'] = float(row['Human (mean)'])
             wordsim_concreteness_combined.append(row)
 
-c_diff_array = np.array([row['c_diff'] for row in wordsim_concreteness_combined])
-wordsim_array = np.array([row['Human (mean)'] for row in wordsim_concreteness_combined])
-corr = np.corrcoef(c_diff_array, wordsim_array)
-ttest = scipy.stats.ttest_ind(c_diff_array, wordsim_array)
-print(c_diff_array)
-print(wordsim_array)
-print(corr)
-print(ttest)
+x = np.array([row['Human (mean)'] for row in wordsim_concreteness_combined])
+ymin = np.array([min([row['Concreteness 1'], row['Concreteness 2']]) for row in wordsim_concreteness_combined if row['c_diff'] < 1])
+ymax = np.array([max([row['Concreteness 1'], row['Concreteness 2']]) for row in wordsim_concreteness_combined if row['c_diff'] < 1])
+plt.vlines(x, ymin, ymax)
+plt.xlabel('Word similarity')
+plt.ylabel('Concreteness min/max')
+plt.xlim([0, 10])
+plt.ylim([0, 5])
+plt.show()
+
+'''c_diff_array = np.array([row['c_diff'] for row in wordsim_concreteness_combined])
+r = scipy.stats.pearsonr(x, c_diff_array)
+b, m = polyfit(x, c_diff_array, 1)
+plt.scatter(x, c_diff_array)
+plt.plot(x, b + m * x, 'r-')
+plt.xlabel('Word similarity (0 to 10)')
+plt.ylabel('Difference in concreteness rating (0 to 5)')
+plt.show()
+print(r)'''
