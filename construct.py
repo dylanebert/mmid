@@ -9,8 +9,11 @@ mmid_english_urls_path = '/data/people/debert/mmid/mmid_english_urls.jsonl'
 
 def save_images(word, links):
     path = os.path.join(data_path, word)
+    broken_links_path = os.path.join(local_path, 'broken_links', word + '.txt')
     if not os.path.exists(path):
         os.makedirs(path)
+    if not os.path.exists(broken_links_path):
+        os.makedirs(broken_links_path)
 
     broken_links_file = open(os.path.join(local_path, 'broken_links', word + '.txt'), 'r+', encoding='utf-8')
     broken_links = broken_links_file.read().splitlines()
