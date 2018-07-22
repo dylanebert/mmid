@@ -34,9 +34,9 @@ def save_images(word, links):
             if link not in broken_links:
                 print('{0} Retrieving word {1}: {2} of {3}'.format(timestamp, word, i + 1, len(links)))
                 try:
-                    response = urllib.request.urlopen(link, timeout=.5)
-                    with open(filename, 'wb') as f:
-                        f.write(response.read())
+                    with urllib.request.urlopen(link, timeout=.5) as response:
+                        with open(filename, 'wb') as f:
+                            f.write(response.read())
                 except:
                     broken_links.append(link)
 
