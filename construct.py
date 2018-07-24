@@ -29,14 +29,17 @@ def save_images(word, links):
 
     for i, link in enumerate(links):
         timestamp = datetime.datetime.now()
-        filename = os.path.join(path, str(i + 1) + '.jpg')
+        _, ext = os.path.splitext(link)
+        filename = os.path.join(path, str(i + 1) + ext)
         if not os.path.exists(filename):
             if link not in broken_links:
                 print('{0} Retrieving word {1}: {2} of {3}'.format(timestamp, word, i + 1, len(links)))
                 try:
                     with urllib.request.urlopen(link, timeout=.5) as response:
-                        with open(filename, 'wb') as f:
-                            f.write(response.read())
+                        info = response.info()
+                        if(info.get_content_maintype() == 'image'):
+                            with open(filename, 'wb') as f:
+                                f.write(response.read())
                 except:
                     broken_links.append(link)
 
