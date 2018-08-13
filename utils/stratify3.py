@@ -7,9 +7,14 @@ from nltk.stem.snowball import SnowballStemmer
 
 stemmer = SnowballStemmer('english')
 
-bin_thresholds = [-1., -.15, -.05, .05, .15, .25, .35, .45, .55, .65, 1.]
+bin_thresholds = [-1., -.13, -.01, .11, .23, .35, .47, .59, .71, .83, 1.]
 num_bins = 10
-bin_size = 30
+bin_size = 10
+
+abstract = []
+with open('abstract_words_list.txt') as f:
+    for line in f.read().splitlines():
+        abstract.append(line)
 
 dict = {}
 with open('glove_mmid.txt') as f:
@@ -17,7 +22,8 @@ with open('glove_mmid.txt') as f:
         line_split = line.split(' ')
         word = line_split[0]
         vector = [float(v) for v in line_split[1:]]
-        dict[word] = vector
+        if word in abstract:
+            dict[word] = vector
 
 marked = []
 
@@ -55,7 +61,7 @@ for i in range(num_bins):
         bins[i, j] = (w1, w2, sim)
 
 for i in range(num_bins):
-    with open(os.path.join('10b30/', '{0}.csv'.format(i + 1)), 'w+') as f:
+    with open(os.path.join('10b10_abstract/', '{0}.csv'.format(i + 1)), 'w+') as f:
         f.write('WordA\tWordB\tCossim\n')
         for tuple in bins[i]:
             w1, w2, sim = tuple
