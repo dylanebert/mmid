@@ -4,7 +4,7 @@ from scipy.spatial.distance import cosine
 from matplotlib import pyplot as plt
 import os
 
-bin_thresholds = [-.2, -.13, -.06, .01, .08, .15, .22, .29, .36, .43, .5]
+bin_thresholds = [-.25, -.15, -.05, .05, .15, .25, .35, .45, .55, .65, .75]
 
 dict = {}
 with open('glove_mmid.txt') as f:
