@@ -1,7 +1,1 @@
-mmid_english_urls.jsonl
-urls.jsonl
-data/*
-broken_links/*
-glove.txt
-glove_mmid.txt
-glove_mmid_plus.txt
+backup/*
