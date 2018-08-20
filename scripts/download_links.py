@@ -7,7 +7,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', help='path to input word list file', type=str, required=True)
 parser.add_argument('-o', '--output', help='path to output directory', type=str, required=True)
-parser.add_argument('--broken_links', help='directory in which to store broken links', type=str, default='~/broken_links/')
+parser.add_argument('--broken_links', help='directory in which to store broken links', type=str, default='broken_links/')
 parser.add_argument('--urls', help='mmid url file', type=str, default='backup/urls.jsonl')
 args = parser.parse_args()
 
