@@ -1,6 +1,7 @@
 import argparse
 import os
 import subprocess
+from nltk.stem.snowball import SnowballStemmer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', help='input pairs file', required=True)
@@ -14,18 +15,24 @@ k = 10
 h = 100
 
 min = float(subprocess.check_output(['head', '-1', args.input]).decode('utf-8').rstrip().split('\t')[2])
-max = float(subprocess.check_output(['tail', '-{0}'.format(h+1), args.input]).decode('utf-8').splitlines()[0].rstrip().split('\t')[2])
+max = float(subprocess.check_output(['tail', '-300', args.input]).decode('utf-8').splitlines()[0].rstrip().split('\t')[2])
 step = (max - min) / (k - 1)
+
+stemmer = SnowballStemmer('english')
 
 with open(args.input) as f:
     i = 0
     j = 0
     bin = []
     for line in f:
-        if float(line.rstrip().split('\t')[2]) >= min + step * i:
+        if i >= k:
+            break
+        w1, w2, sim = line.rstrip().split('\t')
+        if float(sim) >= min + step * i:
             if j < h:
-                bin.append(line)
-                j += 1
+                if not stemmer.stem(w1) == stemmer.stem(w2):
+                    bin.append(line)
+                    j += 1
             else:
                 i += 1
                 j = 0
