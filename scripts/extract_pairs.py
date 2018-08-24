@@ -2,13 +2,15 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', help='input filter word list', required=True)
+parser.add_argument('-f', '--filename', help='pairs filename', default='backup/pairs')
+parser.add_argument('-o', '--output', help='output filename', default='extracted_pairs')
 args = parser.parse_args()
 
 with open(args.input) as f:
     words = f.read().splitlines()
 
-with open('backup/pairs') as f:
-    with open('{0}_pairs'.format(args.input), 'w+') as r:
+with open(args.filename) as f:
+    with open(args.output, 'w+') as r:
         i = 0
         for line in f:
             i += 1
