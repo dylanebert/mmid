@@ -8,3 +8,6 @@ python scripts/stratify_bins.py -i pairs/concrete_adjectives -o bins/concrete_ad
 python scripts/stratify_bins.py -i pairs/abstract_nouns -o bins/abstract_nouns/
 python scripts/stratify_bins.py -i pairs/abstract_verbs -o bins/abstract_verbs/
 python scripts/stratify_bins.py -i pairs/abstract_adjectives -o bins/abstract_adjectives/
+python scripts/stratify_bins.py -i pairs/combined_sample -o bins/combined_sample/
+python scripts/stratify_bins.py -i pairs/concrete_combined -o bins/concrete_combined/
+python scripts/stratify_bins.py -i pairs/abstract_combined -o bins/abstract_combined/
