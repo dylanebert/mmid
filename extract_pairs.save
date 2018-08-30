@@ -1,0 +1,4 @@
+#!/bin/bash
+python scripts/extract_pairs.py -i 
+python scripts/extract_pairs.py -i 
+python scripts/extract_pairs.py -i 
