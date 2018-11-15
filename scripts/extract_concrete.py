@@ -1,9 +1,9 @@
 import os
 
-with open('word_lists/combined') as f:
+with open('word_lists/nouns') as f:
     gmc_words = f.read().splitlines()
 concreteness = {}
-with open('concreteness/combined') as f:
+with open('concreteness/nouns') as f:
     for line in f:
         k, v = line.rstrip().split('\t')
         concreteness[k] = float(v)
